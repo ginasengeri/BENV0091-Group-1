@@ -16,10 +16,10 @@ Builds one table: every wind farm's curtailed volume (June 2022 – June 2025) w
 |---|---|---|---|
 | BM units | `/reference/bmunits/all` | Wind farm IDs (`fuelType == 'WIND'`) | none |
 | Bid-offer acceptances (BOALF) | `/datasets/BOALF/stream` | Accepted levels, SO flag | 3 years runs out of memory, so monthly (filtered to wind each month) |
-| Physical notifications (PN) | `/datasets/PN/stream` | Planned output | 3 years returns empty, so yearly |
+| Physical notifications (PN) | `/datasets/PN/stream` | Planned output | 3 years returns empty, so use a loop: yearly |
 | Metered generation (B1610) | `/datasets/B1610/stream` | Actual output per unit | 1 year fails, so monthly |
 | Wind generation forecast (WINDFOR) | `/datasets/WINDFOR/stream` | Day-ahead wind forecast (GB total) | none (one request) |
-| TSDF / NDF | `/datasets/TSDF/stream`, `/datasets/NDF/stream` | Day-ahead demand forecasts | 3 years returns empty, so quarterly |
+| TSDF / NDF | `/datasets/TSDF/stream`, `/datasets/NDF/stream` | Day-ahead demand forecasts | 3 years returns empty, so loop quarterly |
 | INDO / ITSDO | `/datasets/INDO`, `/datasets/ITSDO` | Actual demand (lagged) | 28 days |
 | Interconnectors | `/generation/outturn/interconnectors` | Interconnector flows (lagged) | 7 days |
 
