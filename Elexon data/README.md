@@ -23,16 +23,26 @@ Builds one table: every wind farm's curtailed volume (June 2022 – June 2025) w
 | INDO / ITSDO | `/datasets/INDO`, `/datasets/ITSDO` | Actual demand (lagged) | 28 days |
 | Interconnectors | `/generation/outturn/interconnectors` | Interconnector flows (lagged) | 7 days |
 
+## Time columns
+
+BOAs start and end at any minute. All other data is per half-hour (settlement period 1–48), except the wind forecast, which is hourly. Three time questions, each answered by its own columns:
+
+| Time info | Columns | Used for |
+|---|---|---|
+| Which half-hour | `settlementDate` + `settlementPeriod` (BOA: `settlementPeriodFrom`, the half-hour it starts in) | matching PN, metered generation, demand, interconnectors |
+| How long | `timeFrom`, `timeTo` → `hours` | curtailment |
+| Which hour | `hour` (BOA `timeFrom` rounded down; wind forecast `startTime`) | matching the wind forecast |
+
 ## Method
 
 ### Step 1: Pull the data
 
-| Data | Pulled by | Time columns it has |
+| Data | Pulled by | Time columns |
 |---|---|---|
-| BOA (NESO's instruction) | wind ID (`bmUnit`) | `settlementDate`; `settlementPeriodFrom` / `settlementPeriodTo` (half-hour the instruction starts / ends, 1–48); `timeFrom` / `timeTo` (exact start / end) |
-| PN (farm's plan), metered generation | wind ID (`bmUnit`) | `settlementDate`; `settlementPeriod` (half-hour, 1–48) |
-| TSDF, NDF, INDO, ITSDO, interconnectors | national | `settlementDate`; `settlementPeriod` (half-hour, 1–48) |
-| Wind forecast | national | `startTime` (hour) |
+| BOA (NESO's instruction) | wind ID (`bmUnit`) | `settlementDate`, `settlementPeriodFrom`, `timeFrom`, `timeTo` |
+| PN (farm's plan), metered generation | wind ID (`bmUnit`) | `settlementDate`, `settlementPeriod` |
+| TSDF, NDF, INDO, ITSDO, interconnectors | national | `settlementDate`, `settlementPeriod` |
+| Wind forecast | national | `startTime` |
 
 ### Step 2: Calculate curtailment
 
