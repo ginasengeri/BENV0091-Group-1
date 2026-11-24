@@ -1,6 +1,6 @@
-# Elexon dataset (curtailment, generation, national demand, demand forecasts, interconnectors)
+# Elexon dataset
 
-Builds one table: every wind farm bid-offer acceptance (June 2022 – June 2025) with its curtailed volume and the Elexon features, saved as `elexon_data.csv`.
+Builds one table: every wind farm's curtailed volume (June 2022 – June 2025) with additional features merged per BOA period (half-hour): metered generation, wind forecast, demand forecasts, actual demand, interconnectors
 
 ## Data sources
 
