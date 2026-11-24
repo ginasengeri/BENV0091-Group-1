@@ -25,8 +25,7 @@ Builds one table: every wind farm's curtailed volume (June 2022 – June 2025) w
 
 ## Time columns
 
-BOAs start and end at any minute. All other data is per half-hour (settlement period 1–48), except the wind forecast, which is hourly. Three time questions, each answered by its own columns:
-
+BOAs start and end at any minute. All other data is per half-hour (settlement period 1–48), except the wind forecast, which is hourly. 
 | Time info | Columns | Used for |
 |---|---|---|
 | Which half-hour | `settlementDate` + `settlementPeriod` (BOA: `settlementPeriodFrom`, the half-hour it starts in) | matching PN, metered generation, demand, interconnectors |
