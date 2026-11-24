@@ -35,9 +35,6 @@ BOAs start and end at any minute. All other data is per half-hour (settlement pe
 
 ## Method
 
-A BOA (bid-offer acceptance) is NESO accepting a wind farm's bid to reduce output below its planned output (PN); the acceptance is the instruction to the farm to 
-reduce its output.
-
 ### Step 1: Pull the data
 
 | Data | Pulled by | Time columns |
@@ -48,6 +45,9 @@ reduce its output.
 | Wind forecast | national | `startTime` |
 
 ### Step 2: Calculate curtailment
+
+A BOA (bid-offer acceptance) is NESO accepting a wind farm's bid to reduce output below its planned output (PN); the acceptance is the instruction to the farm to 
+reduce its output.
 
 | Action | Match columns |
 |---|---|
