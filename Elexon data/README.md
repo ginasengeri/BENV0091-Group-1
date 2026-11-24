@@ -1,6 +1,6 @@
 # Elexon dataset
 
-Builds one table: every wind farm's curtailed volume (June 2022 – June 2025) with additional features merged per BOA period (half-hour): metered generation, wind forecast, demand forecasts, actual demand, interconnectors
+Builds one table: every wind farm's curtailed volume (June 2022 – June 2025) with additional features merged on the half-hour each BOA starts in: metered generation, wind forecast, demand forecasts, actual demand, interconnectors
 
 ## Data sources
 
