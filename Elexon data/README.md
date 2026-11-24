@@ -2,6 +2,8 @@
 
 Builds one table: every wind farm bid-offer acceptance (June 2022 – June 2025) with its curtailed volume and the Elexon features, saved as `elexon_data.csv`.
 
+## Data sources
+
 **General idea (for every Elexon pull):**
 - determine base url and endpoint for data you want
 - determine required parameters and other parameters you want to filter by
@@ -21,7 +23,9 @@ Builds one table: every wind farm bid-offer acceptance (June 2022 – June 2025)
 | INDO / ITSDO | `/datasets/INDO`, `/datasets/ITSDO` | Actual demand (lagged) | 28 days |
 | Interconnectors | `/generation/outturn/interconnectors` | Interconnector flows (lagged) | 7 days |
 
-**Step 1: pull the data**
+## Method
+
+### Step 1: Pull the data
 
 | Data | Pulled by | Time columns it has |
 |---|---|---|
@@ -30,7 +34,7 @@ Builds one table: every wind farm bid-offer acceptance (June 2022 – June 2025)
 | TSDF, NDF, INDO, ITSDO, interconnectors | national | `settlementDate`; `settlementPeriod` (half-hour, 1–48) |
 | Wind forecast | national | `startTime` (hour) |
 
-**Step 2: calculate curtailment**
+### Step 2: Calculate curtailment
 
 | Action | Match columns |
 |---|---|
@@ -38,7 +42,7 @@ Builds one table: every wind farm bid-offer acceptance (June 2022 – June 2025)
 | Calculate `curtailed_MWh` = (pnLevel − boaLevel) × hours, where PN is higher. hours = `timeTo` − `timeFrom` | each BOA row |
 | Add `hour`: `timeFrom` rounded down to the hour, because the wind forecast is hourly | each BOA row |
 
-**Step 3: add features to each BOA**
+### Step 3: Add features to each BOA
 
 | Feature | Match columns |
 |---|---|
